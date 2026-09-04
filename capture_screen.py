@@ -5,6 +5,7 @@ from pathlib import Path
 
 import mss
 from mss import tools
+from screen_analyzer import analyze_screen, context_to_json
 
 
 def capture_screen(output_path: Path) -> Path:
@@ -35,10 +36,17 @@ def main() -> None:
         default=Path("screenshots/screenshot.png"),
         help="PNG path to create (default: screenshots/screenshot.png)",
     )
+    parser.add_argument(
+        "--analyze",
+        action="store_true",
+        help="Analyze the captured screenshot with OCR and print JSON context",
+    )
     args = parser.parse_args()
 
     saved_path = capture_screen(args.output)
     print(f"Screenshot saved to {saved_path.resolve()}")
+    if args.analyze:
+        print(context_to_json(analyze_screen(saved_path)))
 
 
 if __name__ == "__main__":

@@ -103,13 +103,15 @@ Each milestone is implemented, tested, and verified before moving to the next on
 
 * **Python**
 * **mss** — screen capture
-* **pytest** — testing
+* **Pillow** — image loading and metadata
+* **pytesseract** — OCR integration
+* **unittest** — testing
 * **Python virtual environment**
 
 ### Planned
 
 * **PySide6** — desktop UI
-* **PaddleOCR** or another OCR solution
+* **PaddleOCR** or another OCR solution for future OCR improvements
 * **Vision-capable AI model**
 * **Global hotkey library**
 * **SQLite** — future memory storage
@@ -141,6 +143,10 @@ context-aware-ai/
 ├── .venv/
 │
 ├── capture_screen.py
+│
+├── screen_analyzer.py
+│
+├── test_screen_analyzer.py
 │
 ├── screenshots/
 │
@@ -188,9 +194,9 @@ The goal is to make AI assistance feel more naturally integrated into the user's
 
 ## 📌 Project Status
 
-**Current Status: Milestone 1 Complete ✅**
+**Current Status: Milestone 2 Complete ✅**
 
-The first working capability — **Windows screen capture** — has been implemented and successfully tested.
+Screen capture and basic OCR-based visual analysis have been implemented and successfully tested.
 
 More capabilities will be added step-by-step.
 
@@ -213,3 +219,38 @@ This project is being developed as an experimental learning project focused on:
 
 This project is currently intended for educational and experimental purposes.
 
+
+## Milestone 2: Basic Visual Analysis
+
+Install the Python dependencies from `requirements.txt`. OCR also requires the
+separate Tesseract OCR application on Windows. Install a trusted Windows build
+of Tesseract, then make sure `tesseract.exe` is on `PATH` (or configure
+`pytesseract.pytesseract.tesseract_cmd` in `screen_analyzer.py`).
+
+Tesseract receives the captured PNG and returns recognized words, confidence
+scores, and bounding boxes. The Python code turns those results into JSON
+screen context.
+
+Capture only:
+
+```text
+python capture_screen.py
+```
+
+Capture and analyze with OCR:
+
+```text
+python capture_screen.py --analyze
+```
+
+Analyze an existing screenshot directly:
+
+```text
+python screen_analyzer.py screenshots/screenshot.png
+```
+
+Run the Milestone 2 tests:
+
+```text
+python -m unittest test_screen_analyzer.py
+```
