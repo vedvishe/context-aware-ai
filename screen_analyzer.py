@@ -8,6 +8,8 @@ from PIL import Image
 import pytesseract
 from pytesseract import Output
 
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 
 def analyze_screen(image_path: Path) -> dict[str, Any]:
     """Extract image metadata and readable text from a captured screenshot."""
