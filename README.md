@@ -62,17 +62,17 @@ Each milestone is implemented, tested, and verified before moving to the next on
 * Verify that screen capture works successfully
 * Establish the initial Python project environment
 
-### Milestone 2 — Basic Visual Analysis ⏳
+### Milestone 2 — Basic Visual Analysis ✅
 
 * Extract useful information from the captured screen
 * Explore OCR and visual understanding
 * Prepare screen context for AI processing
 
-### Milestone 3 — Question Answering ⏳
+### Milestone 3 — Question Answering ✅
 
-* Send relevant screen context to a vision-capable AI model
-* Allow the user to ask questions about the current screen
-* Generate contextual answers
+* Define an AI provider abstraction
+* Use Gemini to answer questions about structured screen context
+* Keep provider-specific API code isolated from screen analysis
 
 ### Milestone 4 — Global Hotkey + Desktop UI ⏳
 
@@ -105,6 +105,7 @@ Each milestone is implemented, tested, and verified before moving to the next on
 * **mss** — screen capture
 * **Pillow** — image loading and metadata
 * **pytesseract** — OCR integration
+* **google-genai** — Gemini API integration
 * **unittest** — testing
 * **Python virtual environment**
 
@@ -194,9 +195,9 @@ The goal is to make AI assistance feel more naturally integrated into the user's
 
 ## 📌 Project Status
 
-**Current Status: Milestone 2 Complete ✅**
+**Current Status: Milestone 3 Complete ✅**
 
-Screen capture and basic OCR-based visual analysis have been implemented and successfully tested.
+Screen capture, OCR-based visual analysis, and Gemini question answering have been implemented and successfully tested.
 
 More capabilities will be added step-by-step.
 
@@ -253,4 +254,24 @@ Run the Milestone 2 tests:
 
 ```text
 python -m unittest test_screen_analyzer.py
+```
+
+## Milestone 3: Gemini Question Answering
+
+Install the dependencies from `requirements.txt`, then set the Gemini API key
+in the environment before using `GeminiProvider`:
+
+```powershell
+$env:GEMINI_API_KEY = "your-api-key"
+```
+
+The provider accepts the structured dictionary returned by
+`screen_analyzer.analyze_screen` and a user question. It returns Gemini's text
+answer through the provider interface without coupling screen analysis to a
+specific AI service.
+
+Run all tests with:
+
+```text
+python -m unittest
 ```
