@@ -195,7 +195,7 @@ The goal is to make AI assistance feel more naturally integrated into the user's
 
 ## 📌 Project Status
 
-**Current Status: Milestone 3 Complete ✅**
+**Current Status: Milestones 2 and 3 Complete ✅**
 
 Screen capture, OCR-based visual analysis, and Gemini question answering have been implemented and successfully tested.
 
